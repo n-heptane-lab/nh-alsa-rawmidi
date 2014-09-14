@@ -28,7 +28,7 @@ rawModeConst Append   = #{const SND_RAWMIDI_APPEND}
 rawModeConst NonBlock = #{const SND_RAWMIDI_NONBLOCK}
 rawModeConst Sync     = #{const SND_RAWMIDI_SYNC}
 
-foreign import ccall unsafe "alsa/asoundlib.h snd_rawmidi_open"
+foreign import ccall safe "alsa/asoundlib.h snd_rawmidi_open"
   snd_rawmidi_open :: Ptr (Ptr RawMidi) -> Ptr (Ptr RawMidi) -> CString -> CInt -> IO CInt
 
 openInput :: String -> RawMode -> IO (Either CInt (Ptr RawMidi))
@@ -42,7 +42,7 @@ openInput name mode =
           else return (Left r)
 
 
-foreign import ccall unsafe "alsa/asoundlib.h snd_rawmidi_read"
+foreign import ccall safe "alsa/asoundlib.h snd_rawmidi_read"
   snd_rawmidi_read :: Ptr RawMidi -> Ptr a -> (#type size_t) -> IO (#type ssize_t)
 
 read :: Ptr RawMidi -> IO Word8
