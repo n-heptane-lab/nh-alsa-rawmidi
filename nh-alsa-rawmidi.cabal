@@ -1,0 +1,28 @@
+name:                nh-alsa-rawmidi
+version:             0.1.0.0
+synopsis:            A simple binding to the ALSA rawmidi interface
+license:             BSD3
+license-file:        LICENSE
+author:              Jeremy Shaw
+maintainer:          jeremy@n-heptane.com
+category:            Sound
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     Sound.NH.ALSA.RawMidi
+  build-depends:       base >=4.7 && <4.8
+  build-tools:         hsc2hs
+  default-language:    Haskell2010
+  extra-libraries:     asound
+
+executable dump-midi
+  main-is: DumpMidi.hs
+  hs-source-dirs:      examples
+  default-language:    Haskell2010
+  build-depends:       base            >= 4.7 && < 4.8,
+                       mtl             >= 2.1 && < 2.2,
+                       nh-midi         >= 0.1 && < 0.2,
+                       nh-alsa-rawmidi >= 0.1 && < 0.2,
+                       pipes           >= 4.1 && < 4.2
+  extra-libraries:     asound
